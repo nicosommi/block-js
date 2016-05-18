@@ -1,0 +1,30 @@
+{
+  "name": "block-js",
+  "version": "0.0.0",
+  "description": "Parse blocks from files.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicosommi/block-js.git"
+  },
+  "keywords": [
+    "block",
+    "file",
+    "javascript",
+    "js",
+    "region",
+    "c#",
+    "java"
+  ],
+  "author": "nicosommi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicosommi/block-js/issues"
+  },
+  "homepage": "https://github.com/nicosommi/block-js#readme"
+}
