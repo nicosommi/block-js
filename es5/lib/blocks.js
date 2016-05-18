@@ -66,10 +66,6 @@ var delimiters = {
 		"start": "##-",
 		"end": "-##"
 	},
-	"Dockerfile": {
-		"start": "##-",
-		"end": "-##"
-	},
 	"default": {
 		"start": "##-",
 		"end": "-##"
