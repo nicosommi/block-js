@@ -1,7 +1,83 @@
 # Block Js.js [![npm version](https://img.shields.io/npm/v/block-js.svg)](https://www.npmjs.com/package/block-js) [![license type](https://img.shields.io/npm/l/block-js.svg)](https://github.com/nicosommi/block-js.git/blob/master/LICENSE) [![npm downloads](https://img.shields.io/npm/dm/block-js.svg)](https://www.npmjs.com/package/block-js) ![ECMAScript 6 & 5](https://img.shields.io/badge/ECMAScript-6%20/%205-red.svg)
 
-Block Js
-README TBD
+Block-js is an utility to get an array of blocks within a file with their contents, their name, the start and the end line.
+
+A block is a set of lines that starts with a line with the format /\* blockassignedname blockspecificname \*/ and ends with a line with the format /\* endblockassignedname \*/
+
+Let's see an es6 javascript example with a block that is called region:
+
+```javascript
+const descriptionAsked = Symbol("descriptionAsked");
+class Character {
+	/* region constructor */
+	constructor() {
+		this.name = "Patoruzito";
+		this.descriptionAsked = 0;
+	}
+	/* endregion */
+
+	/* region privateMethods */
+	[descriptionAsked]() {
+		this.descriptionAsked++;
+	}
+	/* endregion */
+
+	/* region publicProperties */
+	get statistic() {
+		return this.descriptionAsked;
+	}
+
+	get description() {
+		this[descriptionAsked]();
+		return `${this.name}: an Argentinian classic comic book character. Usa poncho.`;
+	}
+	/* endregion */
+
+	/* region publicMethods */
+	toJSON() {
+		const name = this.name;
+		const statistics = this.statistics;
+		return {
+			name,
+			statistic
+		};
+	}
+	/* endregion */
+}
+```
+
+This is one example use case in which it can be used to create an IDE plugin to expand/collapse regions within a file so it can be easily read and organized.
+Also it can be used, for example, to interpolate blocks between files.
+
+To parse that file we will do something like this:
+
+```javascript
+import Blocks from "block-js";
+
+const blocks = new Blocks("script.js", "region");
+blocks.extractBlocks();
+/*
+this will output an array like this
+[
+	{
+		from: 3,
+		to: 8,
+		name: "constructor",
+		content: "...source code including special chars like \t or \n..."
+	}, {
+		...
+	}, {
+		...
+	}
+]
+*/
+```
+
+Block-js will automatically detect comment delimiters for some file extensions, but it can be also specified as the third argument like this:
+
+```javascript
+const blocks = new Blocks("script.js", "region", { start: "/*", end: "*/" });
+```
 
 # Quality and Compatibility
 
@@ -24,12 +100,12 @@ npm install block-js --save
 
 ```
 // ES6
-import block-js from "block-js";
+import blockJs from "block-js";
 ```
 
 ```
 // ES5
-var block-js = require("block-js");
+var blockJs = require("block-js");
 ```
 
 # How to Contribute

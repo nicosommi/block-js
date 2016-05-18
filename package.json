@@ -11,7 +11,7 @@
 		"gulp": "gulp"
 	},
 	"author": "nicosommi",
-	"license": "UNLICENSED",
+	"license": "MIT",
 	"dependencies": {
 		"babybird": "0.0.1",
 		"prfun": "^2.1.3"
