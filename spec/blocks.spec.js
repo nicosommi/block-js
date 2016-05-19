@@ -1,4 +1,4 @@
-import Blocks from "../es6/lib/blocks.js";
+import Blocks from "../source/lib/blocks.js";
 
 describe("Blocks(blockName)", () => {
 	describe("(cross language)", () => {

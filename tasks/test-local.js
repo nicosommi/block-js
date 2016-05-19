@@ -4,7 +4,7 @@ import istanbul from "gulp-babel-istanbul";
 import "should";
 
 const paths = {
-	sourceCode: "./es6/**/*.js",
+	sourceCode: "./source/**/*.js",
 	spec: "./spec/**/*.spec.js"
 };
 

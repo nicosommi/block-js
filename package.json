@@ -2,7 +2,7 @@
 	"name": "block-js",
 	"version": "0.0.0",
 	"description": "",
-	"main": "./es5/lib/blocks.js",
+	"main": "./dist/lib/blocks.js",
 	"scripts": {
 		"test": "gulp test",
 		"build": "gulp build",
