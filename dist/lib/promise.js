@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -7,17 +7,17 @@ exports.__RewireAPI__ = exports.__ResetDependency__ = exports.__set__ = exports.
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var _babybird = require("babybird");
+var _babybird = require('babybird');
 
 var _babybird2 = _interopRequireDefault(_babybird);
 
-var _wrap = require("prfun/wrap");
+var _wrap = require('prfun/wrap');
 
 var _wrap2 = _interopRequireDefault(_wrap);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _DefaultExportValue = _get__("prfun")(_get__("Promise"));
+var _DefaultExportValue = _get__('prfun')(_get__('Promise'));
 
 exports.default = _DefaultExportValue;
 var _RewiredData__ = {};
@@ -47,10 +47,10 @@ function _get__(variableName) {
 
 function _get_original__(variableName) {
   switch (variableName) {
-    case "prfun":
+    case 'prfun':
       return _wrap2.default;
 
-    case "Promise":
+    case 'Promise':
       return _babybird2.default;
   }
 
@@ -116,7 +116,7 @@ function _with__(object) {
   };
 }
 
-var _typeOfOriginalExport = typeof _DefaultExportValue === "undefined" ? "undefined" : _typeof(_DefaultExportValue);
+var _typeOfOriginalExport = typeof _DefaultExportValue === 'undefined' ? 'undefined' : _typeof(_DefaultExportValue);
 
 function addNonEnumerableProperty(name, value) {
   Object.defineProperty(_DefaultExportValue, name, {

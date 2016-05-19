@@ -3,6 +3,18 @@
 	"version": "0.0.0",
 	"description": "",
 	"main": "./dist/lib/blocks.js",
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  },
 	"scripts": {
 		"test": "gulp test",
 		"build": "gulp build",
