@@ -176,7 +176,7 @@ var Blocks = function () {
             } else if (block && !block.content) {
               block.content = lineString;
             } else if (block && block.content) {
-              block.content += '' + lineString;
+              block.content += '\n' + lineString;
             }
 
           lineNumber++;

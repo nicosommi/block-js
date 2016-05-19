@@ -86,7 +86,7 @@ describe('Blocks(blockName)', () => {
               from: 2,
               to: 6,
               name: 'blockTop',
-              content: '  constructor () {    this.block = true  }'
+              content: '  constructor () {\n    this.block = true\n  }'
             }, {
               from: 10,
               to: 12,
@@ -95,7 +95,7 @@ describe('Blocks(blockName)', () => {
             }, {
               from: 16,
               to: 20,
-              content: '  eat () {    return \'yum\'  }',
+              content: '  eat () {\n    return \'yum\'\n  }',
               name: 'blockBottom'
             }
           ]
@@ -150,12 +150,12 @@ describe('Blocks(blockName)', () => {
               from: 9,
               to: 13,
               name: 'blockRegion',
-              content: '\t\t<div>\t\t\tA block region\t\t</div>'
+              content: '\t\t<div>\n\t\t\tA block region\n\t\t</div>'
             }, {
               from: 17,
               to: 21,
               name: 'blockRegion2',
-              content: '\t\t<div>\t\t\tA block region number 2\t\t</div>'
+              content: '\t\t<div>\n\t\t\tA block region number 2\n\t\t</div>'
             }
           ]
         })
@@ -185,7 +185,7 @@ describe('Blocks(blockName)', () => {
               from: 1,
               to: 5,
               name: 'blockRegion',
-              content: '.class1 {\tfont-family: "Arial"}'
+              content: '.class1 {\n\tfont-family: "Arial"\n}'
             }, {
               from: 13,
               to: 15,
