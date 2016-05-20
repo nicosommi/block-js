@@ -7,19 +7,17 @@ exports.__RewireAPI__ = exports.__ResetDependency__ = exports.__set__ = exports.
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-var _babybird = require('babybird');
+var _bluebird = require('bluebird');
 
-var _babybird2 = _interopRequireDefault(_babybird);
-
-var _wrap = require('prfun/wrap');
-
-var _wrap2 = _interopRequireDefault(_wrap);
+var _bluebird2 = _interopRequireDefault(_bluebird);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _DefaultExportValue = _get__('prfun')(_get__('Promise'));
+_get__('Promise').config({
+  longStackTraces: true
+});
 
-exports.default = _DefaultExportValue;
+exports.default = _get__('Promise');
 var _RewiredData__ = {};
 var _RewireAPI__ = {};
 
@@ -47,11 +45,8 @@ function _get__(variableName) {
 
 function _get_original__(variableName) {
   switch (variableName) {
-    case 'prfun':
-      return _wrap2.default;
-
     case 'Promise':
-      return _babybird2.default;
+      return _bluebird2.default;
   }
 
   return undefined;
@@ -82,7 +77,13 @@ function _update_operation__(operation, variableName, prefix) {
 }
 
 function _set__(variableName, value) {
-  return _RewiredData__[variableName] = value;
+  if ((typeof variableName === 'undefined' ? 'undefined' : _typeof(variableName)) === 'object') {
+    Object.keys(variableName).forEach(function (name) {
+      _RewiredData__[name] = variableName[name];
+    });
+  } else {
+    return _RewiredData__[variableName] = value;
+  }
 }
 
 function _reset__(variableName) {
@@ -116,17 +117,17 @@ function _with__(object) {
   };
 }
 
-var _typeOfOriginalExport = typeof _DefaultExportValue === 'undefined' ? 'undefined' : _typeof(_DefaultExportValue);
+var _typeOfOriginalExport = typeof _bluebird2.default === 'undefined' ? 'undefined' : _typeof(_bluebird2.default);
 
 function addNonEnumerableProperty(name, value) {
-  Object.defineProperty(_DefaultExportValue, name, {
+  Object.defineProperty(_bluebird2.default, name, {
     value: value,
     enumerable: false,
     configurable: true
   });
 }
 
-if ((_typeOfOriginalExport === 'object' || _typeOfOriginalExport === 'function') && Object.isExtensible(_DefaultExportValue)) {
+if ((_typeOfOriginalExport === 'object' || _typeOfOriginalExport === 'function') && Object.isExtensible(_bluebird2.default)) {
   addNonEnumerableProperty('__get__', _get__);
   addNonEnumerableProperty('__GetDependency__', _get__);
   addNonEnumerableProperty('__Rewire__', _set__);
