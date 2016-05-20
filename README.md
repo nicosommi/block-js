@@ -116,7 +116,7 @@ npm install gene-js --save-dev
 <!-- stamp contribute -->
 # How to Contribute
 
-You can submit your ideas through our [issues system](https://github.com/nicosommi/gene-js/issues), or make the modifications yourself and submit them to us in the form of a [GitHub pull request](https://help.github.com/articles/using-pull-requests/).
+You can submit your ideas through our [issues system](https://github.com/nicosommi/block-js/issues), or make the modifications yourself and submit them to us in the form of a [GitHub pull request](https://help.github.com/articles/using-pull-requests/).
 
 Also I accept [donations](http://nicosommi.com). If this component helps you out, it will be enough for me, but if you want to show me how much did it helped you by giving me some money, it will be great for me and my dog, who wants to eat. But seriously I rely on that to keep going with the development.
 I also offer [services](http://integracionesagiles.com) like consultation, development help, mentoring, etc.
@@ -124,7 +124,7 @@ I also offer [services](http://integracionesagiles.com) like consultation, devel
 <!-- stamp runningtests -->
 ## Running Tests
 
-It's easy to run the test suite locally, and *highly recommended* if you're using gene-js on a platform we aren't automatically testing for.
+It's easy to run the test suite locally, and *highly recommended* if you're using block-js on a platform we aren't automatically testing for.
 
 ```
 npm test
