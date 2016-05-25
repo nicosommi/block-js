@@ -1,7 +1,7 @@
 {
   "name": "block-js",
   "version": "0.0.2",
-  "description": "a block extractor utility",
+  "description": "a gdd utility",
   "main": "dist/lib/blocks.js",
   "standard": {
     "globals": [
@@ -27,8 +27,8 @@
   "author": "nicosommi",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.3.5",
     "incognito": "^0.1.4",
+    "bluebird": "^3.3.5",
     "debug": "^2.2.0"
   },
   "devDependencies": {
@@ -52,9 +52,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicosommi/gddify.git"
+    "url": "git+https://github.com/nicosommi/block-js.git"
   },
   "readmeFilename": "README.md",
   "contributors": [],
-  "homepage": "https://github.com/nicosommi/gddify"
+  "homepage": "https://github.com/nicosommi/block-js"
 }
