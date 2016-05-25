@@ -1,0 +1,20 @@
+/* block blockRegion */
+.class1 {
+	font-family: "Arial"
+}
+/* endblock */
+
+#h1 {
+	font-size: 15pt;
+}
+
+
+.class2 {
+	/* block blockRegion2 */
+	font-family: "Arial"
+	/* endblock */
+}
+
+.class3 {
+	background-color: gray;
+}
