@@ -5,7 +5,7 @@
 <!-- ph ignoringStamps -->
 <!-- endph -->
 <!-- ph title -->
-# Block Js.js [![npm version](https://img.shields.io/npm/v/block-js.svg)](https://www.npmjs.com/package/block-js) [![license type](https://img.shields.io/npm/l/block-js.svg)](https://github.com/nicosommi/block-js.git/blob/master/LICENSE) [![npm downloads](https://img.shields.io/npm/dm/block-js.svg)](https://www.npmjs.com/package/block-js) ![ECMAScript 6 & 5](https://img.shields.io/badge/ECMAScript-6%20/%205-red.svg) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+# Block Js [![npm version](https://img.shields.io/npm/v/block-js.svg)](https://www.npmjs.com/package/block-js) [![license type](https://img.shields.io/npm/l/block-js.svg)](https://github.com/nicosommi/block-js.git/blob/master/LICENSE) [![npm downloads](https://img.shields.io/npm/dm/block-js.svg)](https://www.npmjs.com/package/block-js) ![ECMAScript 6 & 5](https://img.shields.io/badge/ECMAScript-6%20/%205-red.svg) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 <!-- endph -->
 
 <!-- ph description -->
@@ -109,7 +109,7 @@ const blocks = new Blocks("script.js", "region", { start: "/*", end: "*/" });
 Copy and paste the following command into your terminal to install Block-js:
 
 ```
-npm install block-js --save-dev
+npm install block-js --save
 ```
 
 <!-- endph -->
