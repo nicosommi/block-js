@@ -111,7 +111,7 @@ Copy and paste the following command into your terminal to install Block-js:
 ```
 npm install block-js --save-dev
 ```
-
+ 
 <!-- endph -->
 <!-- stamp contribute -->
 # How to Contribute
