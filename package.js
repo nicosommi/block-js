@@ -8,9 +8,7 @@
 /* url, /'url': 'git+[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)'/g, 'url': 'git+https://github.com/nicosommi/block-js\.git' */
 /* endph */
 /* ph ignoringStamps */
-/*
-componentCliDeps
-*/
+/* componentCliDeps, uicomponent */
 /* endph */
 
 module.exports =
@@ -86,6 +84,8 @@ module.exports =
     'run-sequence': '^1.1.5',
     'del': '^2.2.0',
     /* endstamp */
+    /* stamp uicomponent*/
+    /* endstamp */
     /* stamp componentUtils */
     'coveralls': '^2.11.2'
     /* endstamp */
@@ -100,4 +100,3 @@ module.exports =
   'contributors': [],
   'homepage': 'https://github.com/nicosommi/gddify'
 }
-
