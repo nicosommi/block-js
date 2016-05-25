@@ -7,7 +7,7 @@ import istanbul from 'gulp-babel-istanbul'
 import 'should'
 
 function defineTestTask (taskName, reporters, sourceCode, spec) {
-  gulp.task(taskName, ['suppress-errors'], (cb) => {
+  gulp.task(taskName, (cb) => {
     gulp.src(sourceCode)
       .pipe(istanbul({
         includeUntested: true
@@ -17,7 +17,7 @@ function defineTestTask (taskName, reporters, sourceCode, spec) {
         gulp.src(spec)
           .pipe(mocha())
           .pipe(istanbul.writeReports({dir: `${__dirname}/../.coverage`, reporters})) // Creating the reports after tests ran
-          .pipe(istanbul.enforceThresholds({ thresholds: { global: 100 } })) // Enforce a coverage of at least 90%
+          .pipe(istanbul.enforceThresholds({ thresholds: { global: 70 } })) // Enforce a coverage of at least 90%
           .on('end', cb)
       })
   })
