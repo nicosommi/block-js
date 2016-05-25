@@ -106,10 +106,10 @@ const blocks = new Blocks("script.js", "region", { start: "/*", end: "*/" });
 <!-- ph installation -->
 # Installation
 
-Copy and paste the following command into your terminal to install Gene-js:
+Copy and paste the following command into your terminal to install Block-js:
 
 ```
-npm install gene-js --save-dev
+npm install block-js --save-dev
 ```
 
 <!-- endph -->
