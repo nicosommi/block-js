@@ -9,9 +9,9 @@
 <!-- endph -->
 
 <!-- ph description -->
-Block-js is an utility to get an array of blocks within a file with their contents, their name, the start and the end line.
+Block-js is an utility to get an array of blocks within a file with their contents, their name, the start and the end line.  
 
-A block is a set of lines that starts with a line with the format /\* blockassignedname blockspecificname \*/ and ends with a line with the format /\* endblockassignedname \*/
+A block is a set of lines that starts with a line with the format /\* blockassignedname blockspecificname \*/ and ends with a line with the format /\* endblockassignedname \*/  
 <!-- endph -->
 
 <!-- ph usagesAndExamples -->
@@ -118,8 +118,8 @@ npm install block-js --save
 
 You can submit your ideas through our [issues system](https://github.com/nicosommi/block-js/issues), or make the modifications yourself and submit them to us in the form of a [GitHub pull request](https://help.github.com/articles/using-pull-requests/).
 
-Also I accept [donations](http://nicosommi.com). If this component helps you out, it will be enough for me, but if you want to show me how much did it helped you by giving me some money, it will be great for me and my dog, who wants to eat. But seriously I rely on that to keep going with the development.
-I also offer [services](http://integracionesagiles.com) like consultation, development help, mentoring, etc.
+For GDD-related service [go here](http://integracionesagiles.com)
+Or contact me to nicosommi@gmail.com for any business related thing or anything else.
 <!-- endstamp -->
 <!-- stamp runningtests -->
 ## Running Tests
