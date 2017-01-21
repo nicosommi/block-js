@@ -7,17 +7,63 @@ exports.__RewireAPI__ = exports.__ResetDependency__ = exports.__set__ = exports.
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _bluebird = require('bluebird');
+exports.default = getDelimiters;
 
-var _bluebird2 = _interopRequireDefault(_bluebird);
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_get__('Promise').config({
-  longStackTraces: true
-});
+function getDelimiters(filePath, customDelimiters) {
+  var currentDelimiter = void 0;
+  if (customDelimiters) {
+    currentDelimiter = customDelimiters;
+  } else {
+    var extension = _get__('path').extname(filePath);
+    if (!_get__('delimiters')[extension]) {
+      currentDelimiter = _get__('delimiters').default;
+    } else {
+      currentDelimiter = _get__('delimiters')[extension];
+    }
+  }
+  return currentDelimiter;
+}
 
-exports.default = _get__('Promise');
+var delimiters = {
+  '.js': {
+    'start': '/*',
+    'end': '*/'
+  },
+  '.java': {
+    'start': '/*',
+    'end': '*/'
+  },
+  '.html': {
+    'start': '<!--',
+    'end': '-->'
+  },
+  '.md': {
+    'start': '<!--',
+    'end': '-->'
+  },
+  '.css': {
+    'start': '/*',
+    'end': '*/'
+  },
+  '.yml': {
+    'start': '##-',
+    'end': '-##'
+  },
+  '.gitignore': {
+    'start': '##-',
+    'end': '-##'
+  },
+  'default': {
+    'start': '##-',
+    'end': '-##'
+  }
+};
 
 var _RewiredData__ = Object.create(null);
 
@@ -58,8 +104,11 @@ function _get__(variableName) {
 
 function _get_original__(variableName) {
   switch (variableName) {
-    case 'Promise':
-      return _bluebird2.default;
+    case 'path':
+      return _path2.default;
+
+    case 'delimiters':
+      return delimiters;
   }
 
   return undefined;
@@ -138,17 +187,17 @@ function _with__(object) {
   };
 }
 
-var _typeOfOriginalExport = typeof _bluebird2.default === 'undefined' ? 'undefined' : _typeof(_bluebird2.default);
+var _typeOfOriginalExport = typeof getDelimiters === 'undefined' ? 'undefined' : _typeof(getDelimiters);
 
 function addNonEnumerableProperty(name, value) {
-  Object.defineProperty(_bluebird2.default, name, {
+  Object.defineProperty(getDelimiters, name, {
     value: value,
     enumerable: false,
     configurable: true
   });
 }
 
-if ((_typeOfOriginalExport === 'object' || _typeOfOriginalExport === 'function') && Object.isExtensible(_bluebird2.default)) {
+if ((_typeOfOriginalExport === 'object' || _typeOfOriginalExport === 'function') && Object.isExtensible(getDelimiters)) {
   addNonEnumerableProperty('__get__', _get__);
   addNonEnumerableProperty('__GetDependency__', _get__);
   addNonEnumerableProperty('__Rewire__', _set__);

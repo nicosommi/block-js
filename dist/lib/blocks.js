@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.__RewireAPI__ = exports.__ResetDependency__ = exports.__set__ = exports.__Rewire__ = exports.__GetDependency__ = exports.__get__ = undefined;
+exports.__RewireAPI__ = exports.__ResetDependency__ = exports.__set__ = exports.__Rewire__ = exports.__GetDependency__ = exports.__get__ = exports.getDelimiters = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -29,6 +29,10 @@ var _incognito = require('incognito');
 
 var _incognito2 = _interopRequireDefault(_incognito);
 
+var _getDelimiters = require('./getDelimiters.js');
+
+var _getDelimiters2 = _interopRequireDefault(_getDelimiters);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -37,40 +41,7 @@ var getBlockName = Symbol('getBlockName');
 var isAnEndBlock = Symbol('isAnEndBlock');
 var isAnStartBlock = Symbol('isAnStartBlock');
 
-var delimiters = {
-  '.js': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.java': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.html': {
-    'start': '<!--',
-    'end': '-->'
-  },
-  '.md': {
-    'start': '<!--',
-    'end': '-->'
-  },
-  '.css': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.yml': {
-    'start': '##-',
-    'end': '-##'
-  },
-  '.gitignore': {
-    'start': '##-',
-    'end': '-##'
-  },
-  'default': {
-    'start': '##-',
-    'end': '-##'
-  }
-};
+exports.getDelimiters = _getDelimiters2.default;
 
 var Blocks = function () {
   function Blocks(filePath, blockName, customDelimiters) {
@@ -79,18 +50,7 @@ var Blocks = function () {
     _get__('_')(this).blockName = blockName;
     _get__('_')(this).filePath = filePath;
 
-    var extension = _get__('path').extname(filePath);
-
-    var currentDelimiter = void 0;
-    if (customDelimiters) {
-      currentDelimiter = customDelimiters;
-    } else {
-      if (!_get__('delimiters')[extension]) {
-        currentDelimiter = _get__('delimiters').default;
-      } else {
-        currentDelimiter = _get__('delimiters')[extension];
-      }
-    }
+    var currentDelimiter = _get__('getDelimiters')(filePath, customDelimiters);
 
     this.startBlockString = currentDelimiter.start;
     this.endBlockString = currentDelimiter.end;
@@ -100,7 +60,7 @@ var Blocks = function () {
   }
 
   _createClass(Blocks, [{
-    key: getBlockName,
+    key: _get__('getBlockName'),
 
 
     /*
@@ -121,7 +81,7 @@ var Blocks = function () {
     */
 
   }, {
-    key: isAnEndBlock,
+    key: _get__('isAnEndBlock'),
     value: function value(lineString) {
       this.regexEndBlock = new RegExp('\\s*' + this.regexStart + '\\s*end' + _get__('_')(this).blockName + '\\s*' + this.regexEnd + '\\s*', 'g');
       return this.regexEndBlock.test(lineString);
@@ -132,7 +92,7 @@ var Blocks = function () {
     */
 
   }, {
-    key: isAnStartBlock,
+    key: _get__('isAnStartBlock'),
     value: function value(lineString) {
       this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '[\\s+\\w+]+\\s*' + this.regexEnd + '\\s*', 'g');
       return this.regexStartBlock.test(lineString);
@@ -168,16 +128,16 @@ var Blocks = function () {
             }
             // detect block end
           } else if (block && _this[isAnEndBlock](lineString)) {
-              block.to = lineNumber + 1;
-              // add block to result
-              result.push(block);
-              // deactivate inside block
-              block = null;
-            } else if (block && !block.content) {
-              block.content = lineString;
-            } else if (block && block.content) {
-              block.content += '\n' + lineString;
-            }
+            block.to = lineNumber + 1;
+            // add block to result
+            result.push(block);
+            // deactivate inside block
+            block = null;
+          } else if (block && !block.content) {
+            block.content = lineString;
+          } else if (block && block.content) {
+            block.content += '\n' + lineString;
+          }
 
           lineNumber++;
         });
@@ -203,7 +163,10 @@ var Blocks = function () {
 }();
 
 exports.default = Blocks;
-var _RewiredData__ = {};
+
+var _RewiredData__ = Object.create(null);
+
+var INTENTIONAL_UNDEFINED = '__INTENTIONAL_UNDEFINED__';
 var _RewireAPI__ = {};
 
 (function () {
@@ -225,7 +188,17 @@ var _RewireAPI__ = {};
 })();
 
 function _get__(variableName) {
-  return _RewiredData__ === undefined || _RewiredData__[variableName] === undefined ? _get_original__(variableName) : _RewiredData__[variableName];
+  if (_RewiredData__ === undefined || _RewiredData__[variableName] === undefined) {
+    return _get_original__(variableName);
+  } else {
+    var value = _RewiredData__[variableName];
+
+    if (value === INTENTIONAL_UNDEFINED) {
+      return undefined;
+    } else {
+      return value;
+    }
+  }
 }
 
 function _get_original__(variableName) {
@@ -233,11 +206,8 @@ function _get_original__(variableName) {
     case '_':
       return _incognito2.default;
 
-    case 'path':
-      return _path2.default;
-
-    case 'delimiters':
-      return delimiters;
+    case 'getDelimiters':
+      return _getDelimiters2.default;
 
     case 'Promise':
       return _promise2.default;
@@ -247,6 +217,15 @@ function _get_original__(variableName) {
 
     case 'readline':
       return _readline2.default;
+
+    case 'getBlockName':
+      return getBlockName;
+
+    case 'isAnEndBlock':
+      return isAnEndBlock;
+
+    case 'isAnStartBlock':
+      return isAnStartBlock;
   }
 
   return undefined;
@@ -282,7 +261,15 @@ function _set__(variableName, value) {
       _RewiredData__[name] = variableName[name];
     });
   } else {
-    return _RewiredData__[variableName] = value;
+    if (value === undefined) {
+      _RewiredData__[variableName] = INTENTIONAL_UNDEFINED;
+    } else {
+      _RewiredData__[variableName] = value;
+    }
+
+    return function () {
+      _reset__(variableName);
+    };
   }
 }
 

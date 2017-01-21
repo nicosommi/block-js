@@ -13,7 +13,7 @@
         "path": "../gene-js/"
       }
     ],
-    "basePath": "/home/nicosommi/workspace/nicosommi/block-js/./",
+    "basePath": "/Users/nicosommi/workspace/my-repos/block-js/./",
     "cleanPath": ".gdd-clean"
   },
   "swBlocks": [
@@ -33,7 +33,7 @@
             "path": "../gene-js/"
           }
         ],
-        "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+        "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
         "cleanPath": ".gdd-clean",
         "jsonification": [
           {
@@ -58,7 +58,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean",
             "jsonification": [
               {
@@ -83,7 +83,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean",
             "jsonification": [
               {
@@ -111,7 +111,7 @@
             "path": "../gene-js/"
           }
         ],
-        "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+        "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
         "cleanPath": ".gdd-clean"
       },
       "sourceCodeFiles": [
@@ -130,7 +130,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -149,7 +149,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -168,7 +168,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -187,7 +187,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -206,7 +206,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -225,7 +225,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         }
@@ -247,7 +247,7 @@
             "path": "../gene-js/"
           }
         ],
-        "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+        "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
         "cleanPath": ".gdd-clean"
       },
       "sourceCodeFiles": [
@@ -266,7 +266,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         }
@@ -288,7 +288,7 @@
             "path": "../gene-js/"
           }
         ],
-        "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+        "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
         "cleanPath": ".gdd-clean"
       },
       "sourceCodeFiles": [
@@ -307,7 +307,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         },
@@ -326,7 +326,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         }
@@ -348,7 +348,7 @@
             "path": "../gene-js/"
           }
         ],
-        "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+        "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
         "cleanPath": ".gdd-clean"
       },
       "sourceCodeFiles": [
@@ -367,7 +367,7 @@
                 "path": "../gene-js/"
               }
             ],
-            "basePath": "/home/nicosommi/workspace/nicosommi/block-js",
+            "basePath": "/Users/nicosommi/workspace/my-repos/block-js",
             "cleanPath": ".gdd-clean"
           }
         }

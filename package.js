@@ -1,6 +1,6 @@
 /* ph replacements */
 /* name, /'name': 'block-js'/g, 'name': 'block-js' */
-/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.2' */
+/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.3' */
 /* main, /'main': '[a-zA-Z\.\/]+'/ig, 'main': 'dist/lib/blocks.js' */
 /* description, /'description': 'a\ block\ extractor\ utility'/g, 'description': 'a block extractor utility' */
 /* license, /MIT/g, MIT */
@@ -15,7 +15,7 @@
 module.exports =
 {
   'name': 'block-js',
-  'version': '0.0.2',
+  'version': '0.0.3',
   'description': 'a gdd utility',
   'main': 'dist/lib/blocks.js',
   'standard': {
@@ -81,6 +81,7 @@ module.exports =
     'babel-eslint': '^3.1.30',
     'babel-plugin-rewire': '^1.0.0-rc-1',
     'babel-preset-es2015': '^6.6.0',
+    'babel-preset-stage-2': '^6.22.0',
     'gulp': '^3.9.1',
     'gulp-babel': '^6.1.2',
     'gulp-babel-istanbul': '^1.0.0',
