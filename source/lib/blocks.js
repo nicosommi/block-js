@@ -3,44 +3,14 @@ import path from 'path'
 import readline from 'readline'
 import Promise from './promise.js'
 import _ from 'incognito'
+import getDelimiters from './getDelimiters.js'
 
 const getBlockName = Symbol('getBlockName')
 const isAnEndBlock = Symbol('isAnEndBlock')
 const isAnStartBlock = Symbol('isAnStartBlock')
 
-const delimiters = {
-  '.js': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.java': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.html': {
-    'start': '<!--',
-    'end': '-->'
-  },
-  '.md': {
-    'start': '<!--',
-    'end': '-->'
-  },
-  '.css': {
-    'start': '/*',
-    'end': '*/'
-  },
-  '.yml': {
-    'start': '##-',
-    'end': '-##'
-  },
-  '.gitignore': {
-    'start': '##-',
-    'end': '-##'
-  },
-  'default': {
-    'start': '##-',
-    'end': '-##'
-  }
+export {
+  getDelimiters
 }
 
 export default class Blocks {
@@ -49,18 +19,7 @@ export default class Blocks {
     _(this).blockName = blockName
     _(this).filePath = filePath
 
-    let extension = path.extname(filePath)
-
-    let currentDelimiter
-    if (customDelimiters) {
-      currentDelimiter = customDelimiters
-    } else {
-      if (!delimiters[extension]) {
-        currentDelimiter = delimiters.default
-      } else {
-        currentDelimiter = delimiters[extension]
-      }
-    }
+    const currentDelimiter = getDelimiters(filePath, customDelimiters)
 
     this.startBlockString = currentDelimiter.start
     this.endBlockString = currentDelimiter.end
