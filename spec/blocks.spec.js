@@ -119,6 +119,33 @@ describe('Blocks(blockName)', () => {
         })
       })
 
+      describe('(one liners)', () => {
+        let expectedValue
+        
+        beforeEach(() => {
+          concreteBlockFileName = `${__dirname}/../fixtures/blocks/oneLiner.js`
+          blocks = new Blocks(concreteBlockFileName, 'ph')
+          expectedValue = [
+            {
+              from: 1,
+              to: 3,
+              name: 'replacements',
+              content: '/* name, /Apple/, Apple */'
+            }, {
+              from: 5,
+              to: 5,
+              content: 'const namespace = \'fruits.apple\' ',
+              name: 'namespace'
+            }
+          ]
+        })
+        
+        it('should return the appropiate blocks', function testBody() {
+          return blocks.extractBlocks()
+            .should.be.fulfilledWith(expectedValue)
+        })
+      })
+
       describe('(unexisting file)', () => {
         beforeEach(() => {
           concreteBlockFileName = `${__dirname}/../fixtures/blocks/unexisting.js`
@@ -172,7 +199,7 @@ describe('Blocks(blockName)', () => {
       let blocks
 
       beforeEach(() => {
-        concreteBlockFileName = `${__dirname}/../fixtures/blocks/concrete.css`
+        concreteBlockFileName = `${__dirname}/../fixtures/blocks/concrete.\css`
         blocks = new Blocks(concreteBlockFileName, 'block')
       })
 

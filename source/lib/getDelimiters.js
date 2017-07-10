@@ -18,11 +18,13 @@ export default function getDelimiters(filePath, customDelimiters) {
 const delimiters = {
   '.js': {
     'start': '/*',
-    'end': '*/'
+    'end': '*/',
+    'inline': '//'
   },
   '.java': {
     'start': '/*',
-    'end': '*/'
+    'end': '*/',
+    'inline': '//'
   },
   '.html': {
     'start': '<!--',
@@ -34,18 +36,22 @@ const delimiters = {
   },
   '.css': {
     'start': '/*',
-    'end': '*/'
+    'end': '*/',
+    'inline': '//'
   },
   '.yml': {
     'start': '##-',
-    'end': '-##'
+    'end': '-##',
+    'inline': '#'
   },
   '.gitignore': {
     'start': '##-',
-    'end': '-##'
+    'end': '-##',
+    'inline': '#'
   },
   'default': {
     'start': '##-',
-    'end': '-##'
+    'end': '-##',
+    'inline': '#'
   }
 }
