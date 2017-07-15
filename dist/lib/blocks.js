@@ -40,6 +40,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var getBlockName = Symbol('getBlockName');
 var isAnEndBlock = Symbol('isAnEndBlock');
 var isAnStartBlock = Symbol('isAnStartBlock');
+var isAInlineBlock = Symbol('isAInlineBlock');
+var buildBlock = Symbol('buildBlock');
+var buildInlineBlock = Symbol('buildInlineBlock');
+var getInlineBlockName = Symbol('getInlineBlockName');
 
 exports.getDelimiters = _getDelimiters2.default;
 
@@ -57,6 +61,7 @@ var Blocks = function () {
 
     this.regexStart = currentDelimiter.start.replace(/\/\*/g, '\\/\\*');
     this.regexEnd = currentDelimiter.end.replace(/\*\//g, '\\*\\/');
+    if (currentDelimiter.inline) this.regexInline = currentDelimiter.inline.replace(/\*\//g, '\\*\\/');
   }
 
   _createClass(Blocks, [{
@@ -73,6 +78,17 @@ var Blocks = function () {
         return matches[1];
       } else {
         throw new Error('Block without a name in file ' + _get__('_')(this).filePath);
+      }
+    }
+  }, {
+    key: _get__('getInlineBlockName'),
+    value: function value(lineString) {
+      this.regexStartBlock = new RegExp('^([\\w\\W\\s]+)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w+)\\s*', 'g');
+      var matches = this.regexStartBlock.exec(lineString);
+      if (matches && matches.length > 0) {
+        return { content: matches[1], name: matches[2] };
+      } else {
+        throw new Error('Inline block without a name in file ' + _get__('_')(this).filePath);
       }
     }
 
@@ -97,6 +113,36 @@ var Blocks = function () {
       this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '[\\s+\\w+]+\\s*' + this.regexEnd + '\\s*', 'g');
       return this.regexStartBlock.test(lineString);
     }
+  }, {
+    key: _get__('isAInlineBlock'),
+    value: function value(lineString) {
+      if (!this.regexInline) return false;
+      this.regexInlineBlock = new RegExp('^([\\w\\W\\s]+)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w+)\\s*', 'g');
+      return this.regexInlineBlock.test(lineString);
+    }
+  }, {
+    key: _get__('buildBlock'),
+    value: function value(lineNumber, lineString, reject) {
+      try {
+        var name = this[getBlockName](lineString);
+        return { from: lineNumber + 1, name: name };
+      } catch (e) {
+        return reject(e);
+      }
+    }
+  }, {
+    key: _get__('buildInlineBlock'),
+    value: function value(lineNumber, lineString, reject) {
+      try {
+        var _getInlineBlockName = this[getInlineBlockName](lineString),
+            name = _getInlineBlockName.name,
+            content = _getInlineBlockName.content;
+
+        return { from: lineNumber + 1, name: name, content: content };
+      } catch (e) {
+        return reject(e);
+      }
+    }
 
     /*
     * returns the blocks from a certain file
@@ -120,18 +166,17 @@ var Blocks = function () {
           // detect block start
           // activate inside block flag
           if (!block && _this[isAnStartBlock](lineString)) {
-            try {
-              var name = _this[getBlockName](lineString);
-              block = { from: lineNumber + 1, name: name };
-            } catch (e) {
-              return reject(e);
-            }
-            // detect block end
+            block = _this[buildBlock](lineNumber, lineString, reject);
           } else if (block && _this[isAnEndBlock](lineString)) {
             block.to = lineNumber + 1;
             // add block to result
             result.push(block);
             // deactivate inside block
+            block = null;
+          } else if (!block && _this[isAInlineBlock](lineString)) {
+            block = _this[buildInlineBlock](lineNumber, lineString, reject);
+            block.to = block.from;
+            result.push(block);
             block = null;
           } else if (block && !block.content) {
             block.content = lineString;
@@ -221,11 +266,23 @@ function _get_original__(variableName) {
     case 'getBlockName':
       return getBlockName;
 
+    case 'getInlineBlockName':
+      return getInlineBlockName;
+
     case 'isAnEndBlock':
       return isAnEndBlock;
 
     case 'isAnStartBlock':
       return isAnStartBlock;
+
+    case 'isAInlineBlock':
+      return isAInlineBlock;
+
+    case 'buildBlock':
+      return buildBlock;
+
+    case 'buildInlineBlock':
+      return buildInlineBlock;
   }
 
   return undefined;
