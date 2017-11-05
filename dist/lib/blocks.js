@@ -47,6 +47,11 @@ var getInlineBlockName = Symbol('getInlineBlockName');
 
 exports.getDelimiters = _getDelimiters2.default;
 
+// TODO:
+// - allow block name array
+// - allow inline comment for multiline blocks
+// - allow inline block for multiline comments
+
 var Blocks = function () {
   function Blocks(filePath, blockName, customDelimiters) {
     _classCallCheck(this, Blocks);
@@ -72,7 +77,7 @@ var Blocks = function () {
     * returns the block name
     */
     value: function value(lineString) {
-      this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w+)\\s*' + this.regexEnd + '\\s*', 'g');
+      this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w[\\w\\-\\.]*)\\s*' + this.regexEnd + '\\s*', 'g');
       var matches = this.regexStartBlock.exec(lineString);
       if (matches && matches.length > 0) {
         return matches[1];
@@ -83,7 +88,7 @@ var Blocks = function () {
   }, {
     key: _get__('getInlineBlockName'),
     value: function value(lineString) {
-      this.regexStartBlock = new RegExp('^([\\w\\W\\s]+)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w+)\\s*', 'g');
+      this.regexStartBlock = new RegExp('^([\\w\\W\\s]*)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w[\\w\\-\\.]*)\\s*', 'g');
       var matches = this.regexStartBlock.exec(lineString);
       if (matches && matches.length > 0) {
         return { content: matches[1], name: matches[2] };
@@ -110,14 +115,14 @@ var Blocks = function () {
   }, {
     key: _get__('isAnStartBlock'),
     value: function value(lineString) {
-      this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '[\\s+\\w+]+\\s*' + this.regexEnd + '\\s*', 'g');
+      this.regexStartBlock = new RegExp('\\s*' + this.regexStart + '\\s*' + _get__('_')(this).blockName + '[\\s+\\w\\-\\.]+\\s*' + this.regexEnd + '\\s*', 'g');
       return this.regexStartBlock.test(lineString);
     }
   }, {
     key: _get__('isAInlineBlock'),
     value: function value(lineString) {
       if (!this.regexInline) return false;
-      this.regexInlineBlock = new RegExp('^([\\w\\W\\s]+)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w+)\\s*', 'g');
+      this.regexInlineBlock = new RegExp('^([\\w\\W\\s]*)' + this.regexInline + '\\s*' + _get__('_')(this).blockName + '\\s+(\\w[\\w\\-\\.]*)\\s*', 'g');
       return this.regexInlineBlock.test(lineString);
     }
   }, {

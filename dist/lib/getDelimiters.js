@@ -36,6 +36,26 @@ var delimiters = {
     'end': '*/',
     'inline': '//'
   },
+  '.jsx': {
+    'start': '/*',
+    'end': '*/',
+    'inline': '//'
+  },
+  '.ts': {
+    'start': '/*',
+    'end': '*/',
+    'inline': '//'
+  },
+  '.tsx': {
+    'start': '/*',
+    'end': '*/',
+    'inline': '//'
+  },
+  '.go': {
+    'start': '/*',
+    'end': '*/',
+    'inline': '//'
+  },
   '.java': {
     'start': '/*',
     'end': '*/',
