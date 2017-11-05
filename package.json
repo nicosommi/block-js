@@ -1,6 +1,6 @@
 {
   "name": "block-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "a gdd utility",
   "main": "dist/lib/blocks.js",
   "standard": {
@@ -22,7 +22,8 @@
     "build": "gulp build",
     "coverage": "gulp test-coverage",
     "watch": "gulp test-watch",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "prepublish": "gulp build"
   },
   "author": "nicosommi",
   "license": "MIT",

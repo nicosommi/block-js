@@ -1,6 +1,6 @@
 /* ph replacements */
 /* name, /'name': 'block-js'/g, 'name': 'block-js' */
-/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.7' */
+/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.8' */
 /* main, /'main': '[a-zA-Z\.\/]+'/ig, 'main': 'dist/lib/blocks.js' */
 /* description, /'description': 'a\ block\ extractor\ utility'/g, 'description': 'a block extractor utility' */
 /* license, /MIT/g, MIT */
@@ -15,7 +15,7 @@
 module.exports =
 {
   'name': 'block-js',
-  'version': '0.0.6',
+  'version': '0.0.8',
   'description': 'a gdd utility',
   'main': 'dist/lib/blocks.js',
   'standard': {
@@ -47,7 +47,8 @@ module.exports =
     'build': 'gulp build',
     'coverage': 'gulp test-coverage',
     'watch': 'gulp test-watch',
-    'gulp': 'gulp'
+    'gulp': 'gulp',
+    'prepublish': 'gulp build'
   },
   'author': 'nicosommi',
   'license': 'MIT',
