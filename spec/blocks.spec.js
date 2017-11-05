@@ -211,6 +211,33 @@ describe('Blocks(blockName)', () => {
             .should.be.fulfilledWith(expectedValue)
         })
       })
+      
+      describe('(flags)', () => {
+        let expectedValue
+        
+        it('should return the appropiate archetype block', function testBody() {
+          concreteBlockFileName = `${__dirname}/../fixtures/blocks/flags.js`
+          blocks = new Blocks(concreteBlockFileName, 'stamp')
+          expectedValue = [
+            {
+              from: 6,
+              to: 6,
+              name: 'debug',
+              content: 'import debug from \'debug\' ',
+              flags: 'ignored'
+            },
+            {
+              from: 11,
+              to: 13,
+              name: 'craf',
+              content: '    debug(namespace)(\'craf\')',
+              flags: 'ignored'
+            }
+          ]
+          return blocks.extractBlocks()
+            .should.be.fulfilledWith(expectedValue)
+        })
+      })
 
       describe('(unexisting file)', () => {
         beforeEach(() => {

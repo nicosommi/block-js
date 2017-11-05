@@ -21,6 +21,8 @@ export {
 // - allow block name array
 // - allow inline comment for multiline blocks
 // - allow inline block for multiline comments
+// * right now it is coupled one line comment to one line block
+// * one line block is when there is code at the beginning instead of just spaces
 export default class Blocks {
 
   constructor (filePath, blockName, customDelimiters) {
@@ -46,20 +48,20 @@ export default class Blocks {
   * returns the block name
   */
   [ getBlockName ] (lineString) {
-    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*${this.regexEnd}\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*[(]*([\\s\\w\\,]*)[)]*\\s*${this.regexEnd}\\s*`, 'g')
     const matches = this.regexStartBlock.exec(lineString)
     if (matches && matches.length > 0) {
-      return matches[1]
+      return { name: matches[1], flags: matches[2] }
     } else {
       throw new Error(`Block without a name in file ${_(this).filePath}`)
     }
   }
   
   [ getInlineBlockName ] (lineString) {
-    this.regexStartBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*[(]*([\\s\\w\\,]*)[)]*\\s*`, 'g')
     const matches = this.regexStartBlock.exec(lineString)
     if (matches && matches.length > 0) {
-      return { content: matches[1], name: matches[2] }
+      return { content: matches[1], name: matches[2], flags: matches[3] }
     } else {
       throw new Error(`Inline block without a name in file ${_(this).filePath}`)
     }
@@ -77,20 +79,24 @@ export default class Blocks {
   * returns true if the line is a block end
   */
   [ isAnStartBlock ] (lineString) {
-    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}[\\s+\\w\\-\\.]+\\s*${this.regexEnd}\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}[\\s+\\w\\-\\.]+\\s*[(]*[\\s\\w\\,]*[)]*\\s*${this.regexEnd}\\s*`, 'g')
     return this.regexStartBlock.test(lineString)
   }
 
   [ isAInlineBlock ] (lineString) {
     if (!this.regexInline) return false
-    this.regexInlineBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*`, 'g')
+    this.regexInlineBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*[(]*([\\s\\w\\,]*)[)]*\\s*`, 'g')
     return this.regexInlineBlock.test(lineString)
   }
 
   [ buildBlock ] (lineNumber, lineString, reject) {
     try {
-      const name = this[getBlockName](lineString)
-      return {from: (lineNumber + 1), name}
+      const { name, flags } = this[getBlockName](lineString)
+      const returnValue = {from: (lineNumber + 1), name}
+      if(flags && flags !== undefined) {
+        returnValue.flags = flags
+      }
+      return returnValue
     } catch (e) {
       return reject(e)
     }
@@ -98,8 +104,12 @@ export default class Blocks {
   
   [ buildInlineBlock ] (lineNumber, lineString, reject) {
     try {
-      const {name, content} = this[getInlineBlockName](lineString)
-      return {from: (lineNumber + 1), name, content}
+      const {name, content, flags} = this[getInlineBlockName](lineString)
+      const returnValue = {from: (lineNumber + 1), name, content}
+      if(flags && flags !== undefined) {
+        returnValue.flags = flags
+      }
+      return returnValue
     } catch (e) {
       return reject(e)
     }

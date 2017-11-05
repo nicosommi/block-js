@@ -9,6 +9,8 @@
 <!-- endph -->
 
 <!-- ph description -->
+This is a work in progress in a early stage.
+
 Block-js is an utility to get an array of blocks within a file with their contents, their name, the start and the end line.  
 
 A block is a set of lines that starts with a line with the format /\* blockassignedname blockspecificname \*/ and ends with a line with the format /\* endblockassignedname \*/  

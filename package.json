@@ -1,6 +1,6 @@
 {
   "name": "block-js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a gdd utility",
   "main": "dist/lib/blocks.js",
   "standard": {
