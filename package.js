@@ -1,6 +1,6 @@
 /* ph replacements */
 /* name, /'name': 'block-js'/g, 'name': 'block-js' */
-/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.5' */
+/* version, /'version': '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b'/ig, 'version': '0.0.6' */
 /* main, /'main': '[a-zA-Z\.\/]+'/ig, 'main': 'dist/lib/blocks.js' */
 /* description, /'description': 'a\ block\ extractor\ utility'/g, 'description': 'a block extractor utility' */
 /* license, /MIT/g, MIT */
@@ -15,7 +15,7 @@
 module.exports =
 {
   'name': 'block-js',
-  'version': '0.0.5',
+  'version': '0.0.6',
   'description': 'a gdd utility',
   'main': 'dist/lib/blocks.js',
   'standard': {

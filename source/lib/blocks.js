@@ -17,6 +17,10 @@ export {
   getDelimiters
 }
 
+// TODO:
+// - allow block name array
+// - allow inline comment for multiline blocks
+// - allow inline block for multiline comments
 export default class Blocks {
 
   constructor (filePath, blockName, customDelimiters) {
@@ -42,7 +46,7 @@ export default class Blocks {
   * returns the block name
   */
   [ getBlockName ] (lineString) {
-    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}\\s+(\\w+)\\s*${this.regexEnd}\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*${this.regexEnd}\\s*`, 'g')
     const matches = this.regexStartBlock.exec(lineString)
     if (matches && matches.length > 0) {
       return matches[1]
@@ -52,7 +56,7 @@ export default class Blocks {
   }
   
   [ getInlineBlockName ] (lineString) {
-    this.regexStartBlock = new RegExp(`^([\\w\\W\\s]+)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w+)\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*`, 'g')
     const matches = this.regexStartBlock.exec(lineString)
     if (matches && matches.length > 0) {
       return { content: matches[1], name: matches[2] }
@@ -73,13 +77,13 @@ export default class Blocks {
   * returns true if the line is a block end
   */
   [ isAnStartBlock ] (lineString) {
-    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}[\\s+\\w+]+\\s*${this.regexEnd}\\s*`, 'g')
+    this.regexStartBlock = new RegExp(`\\s*${this.regexStart}\\s*${_(this).blockName}[\\s+\\w\\-\\.]+\\s*${this.regexEnd}\\s*`, 'g')
     return this.regexStartBlock.test(lineString)
   }
 
   [ isAInlineBlock ] (lineString) {
     if (!this.regexInline) return false
-    this.regexInlineBlock = new RegExp(`^([\\w\\W\\s]+)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w+)\\s*`, 'g')
+    this.regexInlineBlock = new RegExp(`^([\\w\\W\\s]*)${this.regexInline}\\s*${_(this).blockName}\\s+(\\w[\\w\\-\\.]*)\\s*`, 'g')
     return this.regexInlineBlock.test(lineString)
   }
 

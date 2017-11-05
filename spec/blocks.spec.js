@@ -7,6 +7,30 @@ describe('Blocks(blockName)', () => {
       blocks.startBlockString.should.equal('/*')
       blocks.endBlockString.should.equal('*/')
     })
+    
+    it('should detect the delimiters for a jsx file', () => {
+      const blocks = new Blocks('script.jsx', 'ph')
+      blocks.startBlockString.should.equal('/*')
+      blocks.endBlockString.should.equal('*/')
+    })
+    
+    it('should detect the delimiters for a ts file', () => {
+      const blocks = new Blocks('script.ts', 'ph')
+      blocks.startBlockString.should.equal('/*')
+      blocks.endBlockString.should.equal('*/')
+    })
+    
+    it('should detect the delimiters for a tsx file', () => {
+      const blocks = new Blocks('script.tsx', 'ph')
+      blocks.startBlockString.should.equal('/*')
+      blocks.endBlockString.should.equal('*/')
+    })
+    
+    it('should detect the delimiters for a go file', () => {
+      const blocks = new Blocks('script.go', 'ph')
+      blocks.startBlockString.should.equal('/*')
+      blocks.endBlockString.should.equal('*/')
+    })
 
     it('should detect the delimiters for an html file', () => {
       const blocks = new Blocks('index.html', 'ph')
@@ -119,28 +143,70 @@ describe('Blocks(blockName)', () => {
         })
       })
 
-      describe('(one liners)', () => {
+      describe('(one liners / inline)', () => {
         let expectedValue
         
-        beforeEach(() => {
+        it('should return the appropiate archetype block', function testBody() {
+          concreteBlockFileName = `${__dirname}/../fixtures/blocks/oneLiner.js`
+          blocks = new Blocks(concreteBlockFileName, 'archetype')
+          expectedValue = [
+            {
+              from: 1,
+              to: 1,
+              name: 'one-liner',
+              content: ''
+            }
+          ]
+          return blocks.extractBlocks()
+            .should.be.fulfilledWith(expectedValue)
+        })
+        
+        it('should return the appropiate archetype block', function testBody() {
+          concreteBlockFileName = `${__dirname}/../fixtures/blocks/oneLiner.js`
+          blocks = new Blocks(concreteBlockFileName, 'version')
+          expectedValue = [
+            {
+              from: 2,
+              to: 2,
+              name: '0.0.1',
+              content: ''
+            }
+          ]
+          return blocks.extractBlocks()
+            .should.be.fulfilledWith(expectedValue)
+        })
+
+        it('should return the appropiate ph blocks', function testBody() {
           concreteBlockFileName = `${__dirname}/../fixtures/blocks/oneLiner.js`
           blocks = new Blocks(concreteBlockFileName, 'ph')
           expectedValue = [
             {
-              from: 1,
-              to: 3,
+              from: 3,
+              to: 5,
               name: 'replacements',
               content: '/* name, /Apple/, Apple */'
             }, {
-              from: 5,
-              to: 5,
+              from: 7,
+              to: 7,
               content: 'const namespace = \'fruits.apple\' ',
               name: 'namespace'
             }
           ]
+          return blocks.extractBlocks()
+            .should.be.fulfilledWith(expectedValue)
         })
         
-        it('should return the appropiate blocks', function testBody() {
+        it('should return the appropiate stamp blocks', function testBody() {
+          concreteBlockFileName = `${__dirname}/../fixtures/blocks/oneLiner.js`
+          blocks = new Blocks(concreteBlockFileName, 'stamp')
+          expectedValue = [
+            {
+              from: 6,
+              to: 6,
+              name: 'debug',
+              content: 'import debug from \'debug\' '
+            }
+          ]
           return blocks.extractBlocks()
             .should.be.fulfilledWith(expectedValue)
         })

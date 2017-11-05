@@ -1,3 +1,5 @@
+// archetype one-liner
+// version 0.0.1
 /* ph replacements */
 /* name, /Apple/, Apple */
 /* endph */
